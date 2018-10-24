@@ -8,7 +8,7 @@ var drawModule = (function () {
         ctx.strokeRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
   }
 
-  var pizza = function(x, y) {
+  var neko = function(x, y) {
         ctx.fillStyle = 'yellow';
         ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
         ctx.fillStyle = 'red';
@@ -58,29 +58,29 @@ var drawModule = (function () {
           return;          
         }
         
-        if(snakeX == food.x && snakeY == food.y) {
+        if(snakeX == neko.x && snakeY == neko.y) {
           var tail = {x: snakeX, y: snakeY}; //Create a new head instead of moving the tail
           score ++;
           
-          createFood(); //Create new food
+          createNeko(); //Create new neko
         } else {
           var tail = snake.pop(); //pops out the last cell
           tail.x = snakeX; 
           tail.y = snakeY;
         }
-        //The snake can now eat the food.
+        //The snake can now eat the neko out.
         snake.unshift(tail); //puts back the tail as the first cell
 
         for(var i = 0; i < snake.length; i++) {
           bodySnake(snake[i].x, snake[i].y);
         } 
         
-        pizza(food.x, food.y); 
+        neko(neko.x, neko.y); 
         scoreText();
   }
 
-  var createFood = function() {
-      food = {
+  var createNeko = function() {
+      neko = {
         x: Math.floor((Math.random() * 30) + 1),
         y: Math.floor((Math.random() * 30) + 1)
       }
@@ -89,9 +89,9 @@ var drawModule = (function () {
         var snakeX = snake[i].x;
         var snakeY = snake[i].y;
       
-        if (food.x===snakeX && food.y === snakeY || food.y === snakeY && food.x===snakeX) {
-          food.x = Math.floor((Math.random() * 30) + 1);
-          food.y = Math.floor((Math.random() * 30) + 1);
+        if (neko.x===snakeX && neko.y === snakeY || neko.y === snakeY && neko.x===snakeX) {
+          neko.x = Math.floor((Math.random() * 30) + 1);
+          neko.y = Math.floor((Math.random() * 30) + 1);
         }
       }
   }
@@ -107,7 +107,7 @@ var drawModule = (function () {
   var init = function(){
       direction = 'down';
       drawSnake();
-      createFood();
+      createNeko();
       gameloop = setInterval(paint, 80);
   }
 
