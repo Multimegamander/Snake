@@ -6,4 +6,4 @@ var h = 350;
 var score = 0;
 var snake;
 var snakeSize = 10;
-var neko;
+var food;
